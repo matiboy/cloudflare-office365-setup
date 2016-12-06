@@ -1,0 +1,21 @@
+{
+  "name": "cloudflare-office365-setup",
+  "version": "1.0.0",
+  "description": "Sets up a new domain on Cloudflare to match Office 365 DNS requirements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@apecave8425.cloudapp.net:mathieu/cloudflare-office365-setup.git"
+  },
+  "author": "Matiboy <mathieu@redapesolutions.com>",
+  "license": "ISC",
+  "dependencies": {
+    "cloudflare": "^1.0.5",
+    "colors": "^1.1.2",
+    "lodash": "^4.17.2"
+  }
+}
