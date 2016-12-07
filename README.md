@@ -34,9 +34,9 @@ This will set up 2 SRV, 5 CNAME, 1 MX and 1 TXT entry
 
 # Contribute
 
-At the moment, this is used internally at (https://redapesolutions.com)[Red Ape Solutions].  
+At the moment, this is used internally at [Red Ape Solutions](https://redapesolutions.com).  
 Therefore there are probably many cases we are not taking into consideration.
 
-Feel free to (https://github.com/redapesolutions/cloudflare-office365-setup/issues)[submit issues] or even better, (https://github.com/redapesolutions/cloudflare-office365-setup/pulls)[merge requests]
+Feel free to [submit issues](https://github.com/redapesolutions/cloudflare-office365-setup/issues) or even better, [merge requests](https://github.com/redapesolutions/cloudflare-office365-setup/pulls)
 
-When committing, please use `npm run commit` (requires (https://github.com/commitizen/cz-cli)[Commitizen])  
+When committing, please use `npm run commit` 
