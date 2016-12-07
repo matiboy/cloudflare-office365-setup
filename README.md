@@ -16,7 +16,7 @@ Very basic commands to verify and setup DNS records in Cloudflare to match an Of
 
 ## Actions
 
-For all actions, you can refer to (./blob/master/office365/index.js)[the Office 365 DNS records] 
+For all actions, you can refer to [the Office 365 DNS records] (./blob/master/office365/index.js)
 
 ### verify
 
