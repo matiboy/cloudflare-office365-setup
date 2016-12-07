@@ -16,11 +16,11 @@ Very basic commands to verify and setup DNS records in Cloudflare to match an Of
 
 ## Actions
 
-For all actions, you can refer to [the Office 365 DNS records] (./blob/master/office365/index.js)
+For all actions, you can refer to [the Office 365 DNS records](./blob/master/office365/index.js)
 
 ### verify
 
-``` $ npm verify -- <domain> <mscode> ```
+``` $ npm run verify -- <domain> <mscode> ```
 
 The mscode is the value given during the "Verify" phase when adding a new domain on office365:
 
@@ -28,7 +28,7 @@ The mscode is the value given during the "Verify" phase when adding a new domain
 
 ### setup
 
-``` $ npm setup -- <domain> ```
+``` $ npm run setup -- <domain> ```
 
 This will set up 2 SRV, 5 CNAME, 1 MX and 1 TXT entry
 
