@@ -11,7 +11,7 @@ Very basic commands to verify and setup DNS records in Cloudflare to match an Of
 ```
   $ export CF_USERNAME="yourcloudflare@email.com"
   $ export CF_API_KEY="yourApiKey"
-  $ npm <action> <domain> [extra]
+  $ npm run <action> -- <domain> [extra]
 ```
 
 ## Actions
@@ -37,6 +37,6 @@ This will set up 2 SRV, 5 CNAME, 1 MX and 1 TXT entry
 At the moment, this is used internally at [Red Ape Solutions](https://redapesolutions.com).  
 Therefore there are probably many cases we are not taking into consideration.
 
-Feel free to [submit issues](https://github.com/redapesolutions/cloudflare-office365-setup/issues) or even better, [merge requests](https://github.com/redapesolutions/cloudflare-office365-setup/pulls)
+Feel free to [submit issues](https://github.com/redapesolutions/cloudflare-office365-setup/issues) or even better, [pull requests](https://github.com/redapesolutions/cloudflare-office365-setup/pulls)
 
 When committing, please use `npm run commit` 

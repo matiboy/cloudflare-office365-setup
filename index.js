@@ -1,16 +1,29 @@
 var colors = require('colors');
 var CFClient = require('cloudflare');
-var actions =require('./office365');
+var actions = {
+  office365: require('./office365'),
+  mailchimp: require('./mailchimp')
+};
 var client = new CFClient({
     email: process.env.CF_USERNAME,
     key: process.env.CF_API_KEY
 });
 var pick = require('lodash/pick');
+var keys = require('lodash/keys');
+var get = require('lodash/get');
 
-
+const [domain, action, provider] = [get(process.argv,'4'), process.argv[3], process.argv[2]];
+if(provider === 'providers') {
+  console.log('Available providers:');
+  keys(actions).forEach(key => {
+    console.log(key);
+    keys(actions[key]).forEach(action => {
+      console.log(`\t${action} - ${get(actions, [key, action, 'meta', 'description'], 'No description')}`);
+    });
+  });
+  process.exit(0);
+}
 console.log(`Connecting to CloudFlare as ${process.env.CF_USERNAME.magenta}`);
-const [domain, action] = [process.argv[3], process.argv[2]];
-console.log(actions)
 // Try and grab zone, else create it
 client.browseZones({name: domain})
 .then(zones => {
@@ -22,10 +35,12 @@ client.browseZones({name: domain})
   }).then(resp => resp.result);
 })
 .then(zone => {
-  let dnsProperties = actions[action];
+  let dnsProperties = actions[provider][action];
+  // Process properties - there are 3 possible keys: add, update, delete
+  // ADD
   // Add all the properties (in series, had some timeouts in parallel)
   let series = Promise.resolve(true);
-  dnsProperties.forEach(prop => {
+  dnsProperties.add.forEach(prop => {
     prop.zoneId = zone.id;
     let record = CFClient.DNSRecord.create(prop);
     series = series.then(
