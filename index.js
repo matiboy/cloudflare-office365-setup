@@ -28,8 +28,10 @@ console.log(`Connecting to CloudFlare as ${process.env.CF_USERNAME.magenta}`);
 client.browseZones({name: domain})
 .then(zones => {
   if(zones.count) {
+    console.log(`Zone ${domain.magenta} found`);
     return zones.result[0];
   }
+  console.log(`Zone ${domain.white} not found. Creating.`.red);
   return client.addZone({
     name: domain
   }).then(resp => resp.result);
@@ -45,6 +47,7 @@ client.browseZones({name: domain})
     let record = CFClient.DNSRecord.create(prop);
     series = series.then(
       _ => client.addDNS(record)
+           .then(() => console.log(`${record.type.magenta} record added (${record.name})`))
            .catch(function(err) {
              console.log('Failed to add entry', err.response.body.errors[0].error_chain)
            })

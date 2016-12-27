@@ -6,7 +6,7 @@ var exports = module.exports = {
     add: [{
       type: "TXT",
       name: '@',
-      content: `MS=${process.argv[4]}`,
+      content: `MS=${process.argv[5]}`,
       ttl: 3600
     }],
     meta: {
@@ -47,7 +47,8 @@ var exports = module.exports = {
       {
         type: 'MX',
         name: '@',
-        content: `${domain.replace('.','-')}.mail.protection.outlook.com`
+        content: `${domain.replace(/\./g,'-')}.mail.protection.outlook.com`,
+        ttl: 3600
       },
       {
         type: "TXT",
