@@ -1,3 +1,5 @@
+let get = require('lodash/get');
+let domain = get(process.argv, '4', '');
 var exports = module.exports = {
   verify: {
     meta: {
@@ -5,7 +7,7 @@ var exports = module.exports = {
     },
     add: [{
       type: "CNAME",
-      name: 'k1._domainkey.ajcmediaworks.com',
+      name: `k1._domainkey.${domain}`,
       content: 'dkim.mcsv.net',
       ttl: 3600
     },

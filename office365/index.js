@@ -1,16 +1,22 @@
-let get = require('lodash/get')
+let get = require('lodash/get');
 let domain = get(process.argv, '4', '');
 
 var exports = module.exports = {
   verify: {
-      add: [{
+    add: [{
       type: "TXT",
       name: '@',
       content: `MS=${process.argv[4]}`,
       ttl: 3600
-    }]
+    }],
+    meta: {
+      description: 'Verify a domain on Office365. First step before setting up all entries'
+    }
   },
   setup: {
+    meta: {
+      description: 'Adds the ~10 entries required by Office365'
+    },
     add: [
       {
         type: 'SRV',
@@ -53,6 +59,12 @@ var exports = module.exports = {
         type: 'CNAME',
         name: 'sip',
         content: 'sipdir.online.lync.com',
+        ttl: 3600
+      },
+      {
+        type: 'CNAME',
+        name: 'autodiscover',
+        content: ' autodiscover.outlook.com',
         ttl: 3600
       },
       {
