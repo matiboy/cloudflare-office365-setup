@@ -10,7 +10,8 @@ var exports = module.exports = {
       ttl: 3600
     }],
     meta: {
-      description: 'Verify a domain on Office365. First step before setting up all entries'
+      description: 'Verify a domain on Office365. First step before setting up all entries',
+      arguments: ['Domain name', 'Verification code e.g. ms321321321']
     }
   },
   setup: {
