@@ -2,7 +2,8 @@ var colors = require('colors');
 var CFClient = require('cloudflare');
 var actions = {
   office365: require('./office365'),
-  mailchimp: require('./mailchimp')
+  mailchimp: require('./mailchimp'),
+  cloudflare: require('./cloudflare')
 };
 var client = new CFClient({
     email: process.env.CF_USERNAME,
@@ -42,7 +43,7 @@ client.browseZones({name: domain})
   // ADD
   // Add all the properties (in series, had some timeouts in parallel)
   let series = Promise.resolve(true);
-  dnsProperties.add.forEach(prop => {
+  get(dnsProperties, 'add', []).forEach(prop => {
     prop.zoneId = zone.id;
     let record = CFClient.DNSRecord.create(prop);
     series = series.then(
@@ -53,6 +54,26 @@ client.browseZones({name: domain})
            })
       );
   });
+  // UPDATE
+  get(dnsProperties, 'update', []).forEach(prop => {
+    prop.zoneId = zone.id;
+    series = series.then(
+      _ => {
+        let query = {}
+        if(prop.type) {
+          query.type = prop.type
+        }
+        return client.browseDNS(zone, query).then(resp => resp.result)
+      }
+    ).then(zones => {
+      let s = Promise.resolve(true);
+      zones.forEach(zone => s = s.then(_ => {
+        zone.content = prop.value;
+        return client.editDNS(zone)
+      }));
+      return s;
+    })
+  })
   return series;
 })
 .then(_ => console.log('Completed'.green));
