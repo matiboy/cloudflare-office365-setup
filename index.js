@@ -4,7 +4,8 @@ var actions = {
   office365: require('./office365'),
   mailchimp: require('./mailchimp'),
   cloudflare: require('./cloudflare'),
-  sendgrid: require('./sendgrid')
+  sendgrid: require('./sendgrid'),
+  mailgun: require('./mailgun'),
 };
 var client = new CFClient({
     email: process.env.CF_USERNAME,
